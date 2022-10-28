@@ -59,6 +59,9 @@ TagManager:
   - name: front
     uniqueID: 4238632731
     locked: 0
+  - name: SpeicalEffect
+    uniqueID: 2429852029
+    locked: 0
   - name: UI
     uniqueID: 2955450201
     locked: 0
