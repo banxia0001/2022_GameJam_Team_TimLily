@@ -47,23 +47,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: DeepDack
-    uniqueID: 751164537
-    locked: 0
   - name: back
     uniqueID: 1537344829
     locked: 0
-  - name: monster
-    uniqueID: 1337961263
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: player
     uniqueID: 3124805777
     locked: 0
   - name: front
     uniqueID: 4238632731
-    locked: 0
-  - name: Default
-    uniqueID: 0
     locked: 0
   - name: UI
     uniqueID: 2955450201
