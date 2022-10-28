@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ground
+  - Monster
+  - mouse
+  - Blocks
+  - SlowerGround
+  - Sea
+  - UILoading
+  - Monster3
+  - WorldController
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - Monster
+  - Ground
+  - Player
+  - TriggerBox
+  - MoveAbleStuff
+  - Obstacle
+  - MiniMap
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: DeepDack
+    uniqueID: 751164537
+    locked: 0
+  - name: back
+    uniqueID: 1537344829
+    locked: 0
+  - name: monster
+    uniqueID: 1337961263
+    locked: 0
+  - name: player
+    uniqueID: 3124805777
+    locked: 0
+  - name: front
+    uniqueID: 4238632731
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2955450201
+    locked: 0
