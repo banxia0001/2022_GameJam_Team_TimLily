@@ -40,6 +40,8 @@ public class ShipControl : MonoBehaviour
         t1 += Time.deltaTime;
 
         MakeMeteor();
+        MakeMeteor_BackGround();
+
         camscaler();
         isMoving = false;
         Ship0MoveVector = Vector2.zero;
@@ -150,6 +152,24 @@ public class ShipControl : MonoBehaviour
             SmTM2 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
             temp.GetComponent<Meteor>().xmin = meteorLeftMax.position.x;
             temp.GetComponent<Meteor>().xmax = meteorRightMax.position.x;
+        }
+    }
+
+    private float geneTime;
+    public GameObject[] backMeteors;
+    void MakeMeteor_BackGround()
+    {
+        geneTime += Time.deltaTime;
+        if (geneTime > 1.5f)
+        {
+            geneTime = 0;
+            int geneNum = Random.Range(0, 3);
+
+            for (int i = 0; i < geneNum; i++)
+            {
+                GameObject temp = Instantiate(backMeteors[Random.Range(0, backMeteors.Length)], Vector3.Lerp(meteorLeftMax.position, meteorRightMax.position, Random.Range(0f, 1f)), Quaternion.identity);
+            }
+
         }
     }
 
