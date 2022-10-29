@@ -6,6 +6,7 @@ public class ShipHit : MonoBehaviour
 {
     public GameObject HitResult;
     public ShipHit theOtherShip;
+    public ShipControl sc;
     public Vector3 KnockBack;
     public float knockamount,knockmaxtime,t1;
     public bool isShip0;
@@ -22,7 +23,12 @@ public class ShipHit : MonoBehaviour
         t1 += Time.deltaTime;
         if (KnockBack!=Vector3.zero)
         {
-            transform.position += Vector3.Lerp(-KnockBack * knockamount, Vector2.zero, 1 - t1 / knockmaxtime) * Time.deltaTime;
+            transform.position += Vector3.Lerp(-KnockBack * knockamount, Vector2.zero,  t1 / knockmaxtime) * Time.deltaTime;
+            sc.haveControl = false;
+        }
+        else
+        {
+            sc.haveControl = true;
         }
         if(t1>= knockmaxtime)
         {

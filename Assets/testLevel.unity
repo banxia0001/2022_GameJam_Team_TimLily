@@ -419,6 +419,7 @@ MonoBehaviour:
   HitResult: {fileID: 1809676277888288095, guid: feee5c82d3d8ff741939bc58414d5761,
     type: 3}
   theOtherShip: {fileID: 1492800994}
+  sc: {fileID: 2040826731}
   KnockBack: {x: 0, y: 0, z: 0}
   knockamount: 1
   knockmaxtime: 1
@@ -506,7 +507,7 @@ GameObject:
   - component: {fileID: 1492800994}
   - component: {fileID: 1492800995}
   - component: {fileID: 1492800993}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Ship (0)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -549,6 +550,7 @@ MonoBehaviour:
   HitResult: {fileID: 1809676277888288095, guid: feee5c82d3d8ff741939bc58414d5761,
     type: 3}
   theOtherShip: {fileID: 809091205}
+  sc: {fileID: 2040826731}
   KnockBack: {x: 0, y: 0, z: 0}
   knockamount: 1
   knockmaxtime: 1
@@ -794,6 +796,7 @@ MonoBehaviour:
   Sp1: 3
   CamOrigin: 5
   CamZoomed: 6.5
+  haveControl: 0
 --- !u!4 &2040826732
 Transform:
   m_ObjectHideFlags: 0
@@ -968,8 +971,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 1920
+    height: 1080
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60

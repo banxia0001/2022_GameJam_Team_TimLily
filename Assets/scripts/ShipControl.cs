@@ -8,6 +8,7 @@ public class ShipControl : MonoBehaviour
     public Rigidbody2D Rb0, Rb1;
     public Vector2 Ship0MoveVector, Ship1MoveVector,Ship0Pos,Ship1Pos;
     public float Sp0, Sp1,CamOrigin,CamZoomed;
+    public bool haveControl;
     //public 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +21,15 @@ public class ShipControl : MonoBehaviour
     {
         Ship0MoveVector = Vector2.zero;
         Ship1MoveVector = Vector2.zero;
-        Ship0MoveVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (haveControl)
+        {
+            Ship0MoveVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Ship1MoveVector = new Vector2(Input.GetAxis("hori1"), Input.GetAxis("verti1"));
+
+        }
+        
         Ship0Pos = new Vector2(Ship0.transform.position.x, Ship0.transform.position.y);
-        Ship1MoveVector = new Vector2(Input.GetAxis("hori1"), Input.GetAxis("verti1"));
+       
         Ship1Pos = new Vector2(Ship1.transform.position.x, Ship1.transform.position.y);
     }
     private void FixedUpdate()
