@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class ShipControl : MonoBehaviour
 {
@@ -8,10 +10,12 @@ public class ShipControl : MonoBehaviour
     public Camera cam;
     public Rigidbody2D Rb0, Rb1;
     public Vector2 Ship0MoveVector, Ship1MoveVector,Ship0Pos,Ship1Pos;
-    public float Sp0, Sp1,CamOrigin,CamZoomed;
+    public float Sp0, Sp1,CamOrigin,CamZoomed, maxtime;
     public bool haveControl,isMoving,iMTemp;
     public GameObject SmallMeteor;
     public Transform meteorLeftMax, meteorRightMax;
+    public int score;
+    public TextMeshProUGUI scoredisplay, timerdisplay;
     //public float Speed0, Speed1;
     public float HoriTurnMin, HoriTurnMax,maxdistance;
     //public 
@@ -24,8 +28,8 @@ public class ShipControl : MonoBehaviour
         //distance 17.6 = cam size 8, cam pos = 0 0 0
         //dx = d-4.8 / 17.6-4.8
         //cam size lerp 3.8, 8, dx
-        //cam pos x lerp 4.3, 0, dx
-        //cam pos y lerp 7.44, 0, dx
+        //cam pos y lerp 4.3, 0, dx
+        //cam pos x lerp 7.44, 0, dx
         maxdistance = 17.6f - 4.8f;
     }
 
@@ -33,6 +37,8 @@ public class ShipControl : MonoBehaviour
     void Update()
     {
         //Quaternion
+        t1 += Time.deltaTime;
+
         MakeMeteor();
         camscaler();
         isMoving = false;
@@ -55,47 +61,52 @@ public class ShipControl : MonoBehaviour
 
 
 
-        if (isMoving)
-        {
-            if (iMTemp != isMoving)
-            {
-                Debug.Log("Changing to moving view");
-                if (t1 < 1)
-                {
-                    t1 = 1 - t1;
-                }
-                else
-                {
-                    t1 = 0;
-                }
-                iMTemp = isMoving;
-            }
+        //if (isMoving)
+        //{
+        //    if (iMTemp != isMoving)
+        //    {
+        //        Debug.Log("Changing to moving view");
+        //        if (t1 < 1)
+        //        {
+        //            t1 = 1 - t1;
+        //        }
+        //        else
+        //        {
+        //            t1 = 0;
+        //        }
+        //        iMTemp = isMoving;
+        //    }
             //t1 += Time.deltaTime * ZoomSp;
             
             //cam.orthographicSize = Mathf.Lerp(CamOrigin, CamZoomed, t1);
             //airwalls.transform.localScale = Vector3.one * Mathf.Lerp(1, CamZoomed / CamOrigin, t1);
             //Quaternion
             
-        }
-        else
-        {
-            if (iMTemp != isMoving)
-            {
-                Debug.Log("Changing to stop view");
-                if (t1 < 1)
-                {
-                    t1 = 1 - t1;
-                }
-                else
-                {
-                    t1 = 0;
-                }
-                iMTemp = isMoving;
-            }
-            t1 += Time.deltaTime * UnzoomSp;
-            //cam.orthographicSize = Mathf.Lerp(CamZoomed, CamOrigin, t1);
-            //airwalls.transform.localScale = Vector3.one * Mathf.Lerp( CamZoomed / CamOrigin,1, t1);
-        }
+        //}
+        //else
+        //{
+        //    if (iMTemp != isMoving)
+        //    {
+        //        Debug.Log("Changing to stop view");
+        //        if (t1 < 1)
+        //        {
+        //            t1 = 1 - t1;
+        //        }
+        //        else
+        //        {
+        //            t1 = 0;
+        //        }
+        //        iMTemp = isMoving;
+        //    }
+        //    t1 += Time.deltaTime * UnzoomSp;
+        //    //cam.orthographicSize = Mathf.Lerp(CamZoomed, CamOrigin, t1);
+        //    //airwalls.transform.localScale = Vector3.one * Mathf.Lerp( CamZoomed / CamOrigin,1, t1);
+        //}
+    }
+    void setdisplay()
+    {
+        scoredisplay.text = score.ToString();
+        timerdisplay.text = t1.ToString("0.00");
     }
     void camscaler()
     {
@@ -110,12 +121,14 @@ public class ShipControl : MonoBehaviour
         }
         float dx = (tempx - 4.8f) / maxdistance;
         //cam size lerp 3.8, 8, dx
-        //cam pos x lerp 4.3, 0, dx
-        //cam pos y lerp 7.44, 0, dx
+        //cam pos y lerp 4.3, 0, dx
+        //cam pos x lerp 7.44, 0, dx
         cam.orthographicSize = Mathf.Lerp(3.8f, 8f, dx);
-        float camposx = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.x,Ship1.transform.position.x, 0.5f), -Mathf.Lerp(4.3f, 0f, dx), Mathf.Lerp(4.3f, 0f, dx));
-        float camposy = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.y, Ship1.transform.position.y, 0.5f), -Mathf.Lerp(7.44f, 0f, dx), Mathf.Lerp(7.44f, 0f, dx));
+        float camposy = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.y,Ship1.transform.position.y, 0.5f), -Mathf.Lerp(4.3f, 0f, dx), Mathf.Lerp(4.3f, 0f, dx));
+        float camposx = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.x, Ship1.transform.position.x, 0.5f), -Mathf.Lerp(7.44f, 0f, dx), Mathf.Lerp(7.44f, 0f, dx));
         cam.transform.position = new Vector3(camposx, camposy, cam.transform.position.z);
+        airwalls.transform.position = cam.transform.position;
+        airwalls.transform.localScale = Vector3.one*Mathf.Lerp(0.7545849f, 1.591012f, dx);
     }
     public float Smt1, Smt2,SmTM1,SmTM2,SmallMeteorSpawnMin, SmallMeteorSpawnMax;
     void MakeMeteor()

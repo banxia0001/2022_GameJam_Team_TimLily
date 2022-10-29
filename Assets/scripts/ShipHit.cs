@@ -23,7 +23,7 @@ public class ShipHit : MonoBehaviour
         t1 += Time.deltaTime;
         if (KnockBack!=Vector3.zero)
         {
-            transform.position += Vector3.Lerp(-KnockBack * knockamount, Vector2.zero,  t1 / knockmaxtime) * Time.deltaTime;
+            transform.position += Vector3.Lerp(KnockBack * knockamount, Vector3.zero,  t1 / knockmaxtime) * Time.deltaTime;
             sc.haveControl = false;
         }
         else
@@ -76,10 +76,15 @@ public class ShipHit : MonoBehaviour
         }
         //KnockBack = (new Vector2(cc.position.x, cc.position.y) - new Vector2(transform.position.x, transform.position.y)).normalized;
         t1 = 0;
-        KnockBack = (cc.position-transform.position).normalized;
+        KnockBack = -(cc.position-transform.position).normalized;
        
         //rb.AddForce(-KnockBack * knockamount, ForceMode2D.Impulse);
        //Invoke("StopKnock", knockmaxtime);
+    }
+    public void airwallknock(Vector3 direction,float amount)
+    {
+        t1 = 0;
+        KnockBack = (direction).normalized*amount;
     }
     void StopKnock()
     {

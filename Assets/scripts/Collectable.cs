@@ -7,6 +7,7 @@ public class Collectable : MonoBehaviour
     public Transform Target;
     public Vector3 StartPos;
     public float MaxTime,t1;
+    public int scoreamount;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class Collectable : MonoBehaviour
         transform.position = Vector3.Lerp(StartPos, Target.position, t1 / MaxTime);
         if (t1 >= MaxTime)
         {
+            GameObject.FindGameObjectWithTag("GM").GetComponent<ShipControl>().score += scoreamount;
             Debug.Log("collected");
             Destroy(gameObject);
         }
