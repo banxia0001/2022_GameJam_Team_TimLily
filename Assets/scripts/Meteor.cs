@@ -10,13 +10,23 @@ public class Meteor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Quaternion
+        //max for left, min for right
+        Vector3 temp = Vector3.forward * Mathf.Lerp( turnmax, turnmin, transform.position.x / (xmax - xmin))+Vector3.forward*Random.Range(turnmax,turnmin);
+        if (transform.position.x > 0 && temp.z > 0)
+        {
+            temp.z *= -1;
+        }else if(transform.position.x < 0 && temp.z < 0)
+        {
+            temp.z *= -1;
+        }
+        transform.rotation = Quaternion.Euler(temp);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += MoveVector * Time.deltaTime * Sp;
+        transform.position += -transform.up * Time.deltaTime * Sp;
     }
     public void GetHit(Transform sp0,Transform sp1)
     {

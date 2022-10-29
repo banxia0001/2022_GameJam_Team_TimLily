@@ -51,7 +51,11 @@ public class ShipHit : MonoBehaviour
             //rb.AddForce(-KnockBack * knockamount, ForceMode2D.Impulse);
             t1 = 0;
             theOtherShip.CallKnock(transform);
-            
+
+        }
+        else
+        {
+            StopKnock();
         }
     }
     private void OnCollisionExit2D(Collision2D c)

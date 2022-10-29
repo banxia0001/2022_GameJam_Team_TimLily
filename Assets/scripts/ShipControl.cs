@@ -12,19 +12,29 @@ public class ShipControl : MonoBehaviour
     public bool haveControl,isMoving,iMTemp;
     public GameObject SmallMeteor;
     public Transform meteorLeftMax, meteorRightMax;
-    public float Speed0, Speed1;
+    //public float Speed0, Speed1;
+    public float HoriTurnMin, HoriTurnMax,maxdistance;
     //public 
     // Start is called before the first frame update
     void Start()
     {
         SmTM1 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
-
+        //cam size is dependent on distance between two ship
+        //distance 4.8 = cam size 3.8, cam pos x max 4.3, y max 7.44
+        //distance 17.6 = cam size 8, cam pos = 0 0 0
+        //dx = d-4.8 / 17.6-4.8
+        //cam size lerp 3.8, 8, dx
+        //cam pos x lerp 4.3, 0, dx
+        //cam pos y lerp 7.44, 0, dx
+        maxdistance = 17.6f - 4.8f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Quaternion
         MakeMeteor();
+        camscaler();
         isMoving = false;
         Ship0MoveVector = Vector2.zero;
         Ship1MoveVector = Vector2.zero;
@@ -60,9 +70,12 @@ public class ShipControl : MonoBehaviour
                 }
                 iMTemp = isMoving;
             }
-            t1 += Time.deltaTime * ZoomSp;
-            cam.orthographicSize = Mathf.Lerp(CamOrigin, CamZoomed, t1);
-            airwalls.transform.localScale = Vector3.one * Mathf.Lerp(1, CamZoomed / CamOrigin, t1);
+            //t1 += Time.deltaTime * ZoomSp;
+            
+            //cam.orthographicSize = Mathf.Lerp(CamOrigin, CamZoomed, t1);
+            //airwalls.transform.localScale = Vector3.one * Mathf.Lerp(1, CamZoomed / CamOrigin, t1);
+            //Quaternion
+            
         }
         else
         {
@@ -80,69 +93,160 @@ public class ShipControl : MonoBehaviour
                 iMTemp = isMoving;
             }
             t1 += Time.deltaTime * UnzoomSp;
-            cam.orthographicSize = Mathf.Lerp(CamZoomed, CamOrigin, t1);
-            airwalls.transform.localScale = Vector3.one * Mathf.Lerp( CamZoomed / CamOrigin,1, t1);
+            //cam.orthographicSize = Mathf.Lerp(CamZoomed, CamOrigin, t1);
+            //airwalls.transform.localScale = Vector3.one * Mathf.Lerp( CamZoomed / CamOrigin,1, t1);
         }
+    }
+    void camscaler()
+    {
+        float tempx = Vector3.Distance(Ship0.transform.position, Ship1.transform.position);
+        if (tempx < 4.8f)
+        {
+            tempx = 4.8f;
+        }
+        else if (tempx > 17.6f)
+        {
+            tempx = 17.6f;
+        }
+        float dx = (tempx - 4.8f) / maxdistance;
+        //cam size lerp 3.8, 8, dx
+        //cam pos x lerp 4.3, 0, dx
+        //cam pos y lerp 7.44, 0, dx
+        cam.orthographicSize = Mathf.Lerp(3.8f, 8f, dx);
+        float camposx = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.x,Ship1.transform.position.x, 0.5f), -Mathf.Lerp(4.3f, 0f, dx), Mathf.Lerp(4.3f, 0f, dx));
+        float camposy = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.y, Ship1.transform.position.y, 0.5f), -Mathf.Lerp(7.44f, 0f, dx), Mathf.Lerp(7.44f, 0f, dx));
+        cam.transform.position = new Vector3(camposx, camposy, cam.transform.position.z);
     }
     public float Smt1, Smt2,SmTM1,SmTM2,SmallMeteorSpawnMin, SmallMeteorSpawnMax;
     void MakeMeteor()
     {
-        //Smt1 += Time.deltaTime;
-        //Smt2 += Time.deltaTime;
-        //if (Smt1 >= SmTM1)
-        //{
-        //    GameObject temp = Instantiate(SmallMeteor, Vector3.Lerp(meteorLeftMax.position, meteorRightMax.position, Random.Range(0f, 1f)), Quaternion.identity);
-        //    SmTM1 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
-        //    temp.GetComponent<Meteor>().xmin = meteorLeftMax.position.x;
-        //    temp.GetComponent<Meteor>().xmax = meteorRightMax.position.x;
-        //}
-        //if (Smt2 >= SmTM2)
-        //{
-        //    GameObject temp = Instantiate(SmallMeteor, Vector3.Lerp(meteorLeftMax.position, meteorRightMax.position, Random.Range(0f, 1f)), Quaternion.identity);
-        //    SmTM2 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
-        //    temp.GetComponent<Meteor>().xmin = meteorLeftMax.position.x;
-        //    temp.GetComponent<Meteor>().xmax = meteorRightMax.position.x;
-        //}
+        Smt1 += Time.deltaTime;
+        Smt2 += Time.deltaTime;
+        if (Smt1 >= SmTM1)
+        {
+            Smt1 = 0;
+            GameObject temp = Instantiate(SmallMeteor, Vector3.Lerp(meteorLeftMax.position, meteorRightMax.position, Random.Range(0f, 1f)), Quaternion.identity);
+            SmTM1 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
+            temp.GetComponent<Meteor>().xmin = meteorLeftMax.position.x;
+            temp.GetComponent<Meteor>().xmax = meteorRightMax.position.x;
+        }
+        if (Smt2 >= SmTM2)
+        {
+            Smt2 = 0;
+            GameObject temp = Instantiate(SmallMeteor, Vector3.Lerp(meteorLeftMax.position, meteorRightMax.position, Random.Range(0f, 1f)), Quaternion.identity);
+            SmTM2 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
+            temp.GetComponent<Meteor>().xmin = meteorLeftMax.position.x;
+            temp.GetComponent<Meteor>().xmax = meteorRightMax.position.x;
+        }
     }
 
- 
-    
+
+    public Vector3 ship0turntemp,ship1turntemp;
+    public float t2, t3, ship0recorded, ship1recorded;
     private void FixedUpdate()
     {
-        
+
         if (Ship0MoveVector != Vector2.zero)
         {
             Rb0.MovePosition(Ship0Pos + Ship0MoveVector * Time.deltaTime * Sp0);
             flame0.SetActive(true);
-            
+            t2 += Time.fixedDeltaTime;
+            if (Ship0MoveVector.x > 0)
+            {
+                if (ship0recorded <= 0)
+                {
+                    t2 = 0;
+                    ship0recorded = Ship0MoveVector.x;
+                    ship0turntemp = Ship0.transform.rotation.eulerAngles;
+                }
+                Ship0.transform.rotation = Quaternion.Lerp(Quaternion.Euler(ship0turntemp), Quaternion.Euler(Vector3.forward * HoriTurnMax * Mathf.Abs( Ship0MoveVector.x)), t2/1.5f);
+            } else if (Ship0MoveVector.x < 0)
+            {
+                if (ship0recorded >= 0)
+                {
+                    t2 = 0;
+                    ship0recorded = Ship0MoveVector.x;
+                    ship0turntemp = Ship0.transform.rotation.eulerAngles;
+                }
+                Ship0.transform.rotation = Quaternion.Lerp(Quaternion.Euler( ship0turntemp), Quaternion.Euler(Vector3.forward * HoriTurnMin * Mathf.Abs(Ship0MoveVector.x)), t2 / 1.5f);
+            }
+            else
+            {
+                if (ship0recorded != 0)
+                {
+                    t2 = 0;
+                    ship0recorded = Ship0MoveVector.x;
+                    ship0turntemp = Ship0.transform.rotation.eulerAngles;
+                }
+                Ship0.transform.rotation = Quaternion.Lerp(Quaternion.Euler(ship0turntemp), Quaternion.Euler(Vector3.zero), t2 / 1f);
+            }
         }
         else
         {
-            //Rb0.velocity = Vector2.zero;
+            Rb0.velocity = Vector2.zero;
             flame0.SetActive(false);
-
+            if (ship0recorded != 0)
+            {
+                t2 = 0;
+                ship0recorded = Ship0MoveVector.x;
+                ship0turntemp = Ship0.transform.rotation.eulerAngles;
+            }
+            Ship0.transform.rotation = Quaternion.Lerp(Quaternion.Euler(ship0turntemp), Quaternion.Euler(Vector3.zero), t2 / 1f);
+            //transform.rotation = Quaternion.Euler(Vector3.zero);
         }
         if (Ship1MoveVector != Vector2.zero)
         {
             Rb1.MovePosition(Ship1Pos + Ship1MoveVector * Time.deltaTime * Sp1);
             flame1.SetActive(true);
-           
+            t3 += Time.fixedDeltaTime;
+            if (Ship1MoveVector.x > 0)
+            {
+                if (ship1recorded <= 0)
+                {
+                    t3 = 0;
+                    ship1recorded = Ship1MoveVector.x;
+                    ship1turntemp = Ship1.transform.rotation.eulerAngles;
+                }
+                Ship1.transform.rotation = Quaternion.Lerp(Quaternion.Euler(ship1turntemp), Quaternion.Euler(Vector3.forward * HoriTurnMax * Mathf.Abs(Ship1MoveVector.x)), t3/ 1.5f);
+            }
+            else if (Ship1MoveVector.x < 0)
+            {
+                if (ship1recorded >= 0)
+                {
+                    t3 = 0;
+                    ship1recorded = Ship1MoveVector.x;
+                    ship1turntemp = Ship1.transform.rotation.eulerAngles;
+                }
+                Ship1.transform.rotation = Quaternion.Lerp(Quaternion.Euler(ship1turntemp), Quaternion.Euler(Vector3.forward * HoriTurnMin * Mathf.Abs(Ship1MoveVector.x)), t3 / 1.5f);
+            }
+            else
+            {
+                if (ship1recorded != 0)
+                {
+                    t3 = 0;
+                    ship1recorded = Ship1MoveVector.x;
+                    ship1turntemp = Ship1.transform.rotation.eulerAngles;
+                }
+                Ship1.transform.rotation = Quaternion.Lerp(Quaternion.Euler(ship1turntemp), Quaternion.Euler(Vector3.zero), t3 / 1f);
+            }
         }
         else
         {
-            //Rb1.velocity = Vector2.zero;
+            Rb1.velocity = Vector2.zero;
             flame1.SetActive(false);
+            if (ship1recorded != 0)
+            {
+                t3 = 0;
+                ship1recorded = Ship1MoveVector.x;
+                ship1turntemp = Ship1.transform.rotation.eulerAngles;
+            }
+            Ship1.transform.rotation = Quaternion.Lerp(Quaternion.Euler(ship1turntemp), Quaternion.Euler(Vector3.zero), t3 / 1f);
         }
        
         
     }
     public float t1, CamSizeSwitchMaxTime,ZoomSp,UnzoomSp;
 
-    private void shipRotation()
-    { 
-    
-    
-    
-    }
+
 
 }
