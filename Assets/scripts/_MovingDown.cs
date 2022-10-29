@@ -10,7 +10,7 @@ public class _MovingDown : MonoBehaviour
         speed = 10f;
         //Random.Range(-2f,2f);
         this.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
-        this.transform.localScale = new Vector3(Random.Range(3.8f, 6.2f), Random.Range(3.8f, 5.2f), Random.Range(3.8f, 5.2f));
+        this.transform.localScale = new Vector3(Random.Range(4.8f, 10.2f), Random.Range(4.8f, 10.2f), Random.Range(4.8f, 7.2f));
         this.transform.position = new Vector3(transform.position.x, transform.position.y, Random.Range(5f, 30f));
     }
     void FixedUpdate()

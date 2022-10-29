@@ -167,7 +167,7 @@ public class ShipControl : MonoBehaviour
 
             for (int i = 0; i < geneNum; i++)
             {
-                GameObject temp = Instantiate(backMeteors[Random.Range(0, backMeteors.Length)], Vector3.Lerp(meteorLeftMax.position, meteorRightMax.position, Random.Range(0f, 1f)), Quaternion.identity);
+                GameObject temp = Instantiate(backMeteors[Random.Range(0, backMeteors.Length)], Vector3.Lerp(meteorLeftMax.position, meteorRightMax.position, Random.Range(0f, 1f)) + new Vector3(0,3f,0), Quaternion.identity);
             }
 
         }
