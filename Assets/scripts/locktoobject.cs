@@ -9,12 +9,14 @@ public class locktoobject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = transform.position - target.transform.position;
+        if(target!=null)
+             offset = transform.position - target.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = target.transform.TransformPoint( offset);
+        if (target != null)
+            transform.position = target.transform.TransformPoint( offset);
     }
 }

@@ -129,8 +129,8 @@ public class ShipControl : MonoBehaviour
         //cam.orthographicSize = Mathf.Lerp(3.8f, 8f, dx);
         cam.fieldOfView = Mathf.Lerp(38, 73, dx);
         float camposy = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.y,Ship1.transform.position.y, 0.5f), -Mathf.Lerp(4.3f, 0f, dx), Mathf.Lerp(4.3f, 0f, dx));
-        float camposx = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.x, Ship1.transform.position.x, 0.5f), -Mathf.Lerp(7.44f, 0f, dx), Mathf.Lerp(7.44f, 0f, dx));
-        //cam.transform.position = new Vector3(camposx, camposy, cam.transform.position.z);
+        float camposx = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.x, Ship1.transform.position.x, 0.5f), -Mathf.Lerp(7.48f, 0f, dx), Mathf.Lerp(7.44f, 0f, dx));
+        cam.transform.position = new Vector3(camposx, camposy, cam.transform.position.z);
         airwalls.transform.position = cam.transform.position;
         airwalls.transform.localScale = Vector3.one*Mathf.Lerp(0.6878871f, 1.548818f, dx);
     }
@@ -184,7 +184,7 @@ public class ShipControl : MonoBehaviour
         if (Ship0MoveVector != Vector2.zero)
         {
             Rb0.MovePosition(Ship0Pos + Ship0MoveVector * Time.deltaTime * Sp0);
-            flame0.SetActive(true);
+            //flame0.SetActive(true);
             t2 += Time.fixedDeltaTime;
             if (Ship0MoveVector.x > 0)
             {
@@ -219,7 +219,7 @@ public class ShipControl : MonoBehaviour
         else
         {
             Rb0.velocity = Vector2.zero;
-            flame0.SetActive(false);
+            //flame0.SetActive(false);
             if (ship0recorded != 0)
             {
                 t2 = 0;
@@ -232,7 +232,7 @@ public class ShipControl : MonoBehaviour
         if (Ship1MoveVector != Vector2.zero)
         {
             Rb1.MovePosition(Ship1Pos + Ship1MoveVector * Time.deltaTime * Sp1);
-            flame1.SetActive(true);
+            //flame1.SetActive(true);
             t3 += Time.fixedDeltaTime;
             if (Ship1MoveVector.x > 0)
             {
@@ -268,7 +268,7 @@ public class ShipControl : MonoBehaviour
         else
         {
             Rb1.velocity = Vector2.zero;
-            flame1.SetActive(false);
+            //flame1.SetActive(false);
             if (ship1recorded != 0)
             {
                 t3 = 0;
