@@ -105,8 +105,8 @@ public class ShipControl : MonoBehaviour
     }
     void setdisplay()
     {
-        scoredisplay.text = score.ToString();
-        timerdisplay.text = t1.ToString("0.00");
+        //scoredisplay.text = score.ToString();
+        //timerdisplay.text = t1.ToString("0.00");
     }
     void camscaler()
     {
@@ -128,7 +128,7 @@ public class ShipControl : MonoBehaviour
         float camposx = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.x, Ship1.transform.position.x, 0.5f), -Mathf.Lerp(7.44f, 0f, dx), Mathf.Lerp(7.44f, 0f, dx));
         cam.transform.position = new Vector3(camposx, camposy, cam.transform.position.z);
         airwalls.transform.position = cam.transform.position;
-        airwalls.transform.localScale = Vector3.one*Mathf.Lerp(0.7545849f, 1.591012f, dx);
+        airwalls.transform.localScale = Vector3.one*Mathf.Lerp(0.6878871f, 1.548818f, dx);
     }
     public float Smt1, Smt2,SmTM1,SmTM2,SmallMeteorSpawnMin, SmallMeteorSpawnMax;
     void MakeMeteor()

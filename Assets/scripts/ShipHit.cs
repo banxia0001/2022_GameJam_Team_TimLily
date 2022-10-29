@@ -23,7 +23,7 @@ public class ShipHit : MonoBehaviour
         t1 += Time.deltaTime;
         if (KnockBack!=Vector3.zero)
         {
-            transform.position += Vector3.Lerp(KnockBack * knockamount, Vector3.zero,  t1 / knockmaxtime) * Time.deltaTime;
+            transform.position += Vector3.Lerp(-KnockBack * knockamount, Vector3.zero,  t1 / knockmaxtime) * Time.deltaTime;
             sc.haveControl = false;
         }
         else
@@ -51,11 +51,15 @@ public class ShipHit : MonoBehaviour
             //rb.AddForce(-KnockBack * knockamount, ForceMode2D.Impulse);
             t1 = 0;
             theOtherShip.CallKnock(transform);
-
+            //Debug.DrawLine(transform.position, transform.position - KnockBack * knockamount, Color.red, 10f);
         }
         else
         {
-            StopKnock();
+            if(c.gameObject.tag != "bouncewall")
+            {
+                StopKnock();
+            }
+            
         }
     }
     private void OnCollisionExit2D(Collision2D c)
@@ -76,15 +80,22 @@ public class ShipHit : MonoBehaviour
         }
         //KnockBack = (new Vector2(cc.position.x, cc.position.y) - new Vector2(transform.position.x, transform.position.y)).normalized;
         t1 = 0;
-        KnockBack = -(cc.position-transform.position).normalized;
-       
+        KnockBack = (cc.position-transform.position).normalized;
+        //Debug.DrawLine(transform.position, transform.position - KnockBack * knockamount, Color.red, 10f);
+        //Debug.Log(KnockBack);
+
         //rb.AddForce(-KnockBack * knockamount, ForceMode2D.Impulse);
-       //Invoke("StopKnock", knockmaxtime);
+        //Invoke("StopKnock", knockmaxtime);
     }
     public void airwallknock(Vector3 direction,float amount)
     {
+       
         t1 = 0;
         KnockBack = (direction).normalized*amount;
+        //Debug.Log("air wall knock transfer to player");
+        //Debug.Log(t1);
+        //Debug.Log(KnockBack);
+        //Debug.DrawLine(transform.position, transform.position - KnockBack * knockamount, Color.red,10f);
     }
     void StopKnock()
     {
