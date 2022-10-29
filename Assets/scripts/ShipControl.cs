@@ -123,12 +123,14 @@ public class ShipControl : MonoBehaviour
         }
         float dx = (tempx - 4.8f) / maxdistance;
         //cam size lerp 3.8, 8, dx
+        //cam field lerp 38, 73, dx
         //cam pos y lerp 4.3, 0, dx
         //cam pos x lerp 7.44, 0, dx
-        cam.orthographicSize = Mathf.Lerp(3.8f, 8f, dx);
+        //cam.orthographicSize = Mathf.Lerp(3.8f, 8f, dx);
+        cam.fieldOfView = Mathf.Lerp(38, 73, dx);
         float camposy = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.y,Ship1.transform.position.y, 0.5f), -Mathf.Lerp(4.3f, 0f, dx), Mathf.Lerp(4.3f, 0f, dx));
         float camposx = Mathf.Clamp(Mathf.Lerp(Ship0.transform.position.x, Ship1.transform.position.x, 0.5f), -Mathf.Lerp(7.44f, 0f, dx), Mathf.Lerp(7.44f, 0f, dx));
-        cam.transform.position = new Vector3(camposx, camposy, cam.transform.position.z);
+        //cam.transform.position = new Vector3(camposx, camposy, cam.transform.position.z);
         airwalls.transform.position = cam.transform.position;
         airwalls.transform.localScale = Vector3.one*Mathf.Lerp(0.6878871f, 1.548818f, dx);
     }
