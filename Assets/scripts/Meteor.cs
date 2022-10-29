@@ -6,7 +6,7 @@ public class Meteor : MonoBehaviour
 {
     public GameObject CollectableRocks;
     public Vector3 MoveVector;
-    public float Sp;
+    public float Sp,xmin,xmax,turnmin,turnmax;
     // Start is called before the first frame update
     void Start()
     {
