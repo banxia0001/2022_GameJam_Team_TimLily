@@ -13,13 +13,13 @@ TagManager:
   - Water
   - UI
   - 
-  - Monster
-  - Ground
+  - 
+  - 
   - Player
-  - TriggerBox
-  - MoveAbleStuff
+  - AirWall
+  - 
   - Obstacle
-  - MiniMap
+  - 
   - 
   - 
   - 
