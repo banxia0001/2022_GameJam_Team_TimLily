@@ -56,9 +56,6 @@ TagManager:
   - name: player
     uniqueID: 3124805777
     locked: 0
-  - name: front
-    uniqueID: 4238632731
-    locked: 0
   - name: SpeicalEffect
     uniqueID: 2429852029
     locked: 0
