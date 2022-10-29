@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class bouncingairwall : MonoBehaviour
 {
-
+    public Vector3 knockdir;
+    public float knocksp;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +16,13 @@ public class bouncingairwall : MonoBehaviour
     void Update()
     {
         
+    }
+    private void OnCollisionEnter2D(Collision2D c)
+    {
+        if (c.gameObject.tag == "Player")
+        {
+            Debug.Log("air wall knocked player");
+            c.gameObject.GetComponent<ShipHit>().airwallknock(knockdir, knocksp);
+        }
     }
 }

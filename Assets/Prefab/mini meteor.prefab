@@ -122,7 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dcd1765d8f1fc74a8325df386f10852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollectableRocks: {fileID: 0}
+  CollectableRocks: {fileID: 1146844601751803880, guid: 61d3a7a8f6444c2488d1c57e5ca3216c,
+    type: 3}
   MoveVector: {x: 0, y: 0, z: 0}
   Sp: 3
   xmin: 0
