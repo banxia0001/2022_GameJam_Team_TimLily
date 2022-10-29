@@ -160,7 +160,7 @@ public class ShipControl : MonoBehaviour
     void MakeMeteor_BackGround()
     {
         geneTime += Time.deltaTime;
-        if (geneTime > 1.5f)
+        if (geneTime > .2f)
         {
             geneTime = 0;
             int geneNum = Random.Range(0, 3);
