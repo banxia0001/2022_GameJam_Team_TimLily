@@ -12,6 +12,7 @@ public class ShipControl : MonoBehaviour
     public bool haveControl,isMoving,iMTemp;
     public GameObject SmallMeteor;
     public Transform meteorLeftMax, meteorRightMax;
+    public float Speed0, Speed1;
     //public 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +37,14 @@ public class ShipControl : MonoBehaviour
                 isMoving = true;
             }
         }
-        
+
+        //Rb0.AddForce(Ship0MoveVector * Speed0);
+        //Rb1.AddForce(Ship1MoveVector * Speed1);
         Ship0Pos = new Vector2(Ship0.transform.position.x, Ship0.transform.position.y);
-       
         Ship1Pos = new Vector2(Ship1.transform.position.x, Ship1.transform.position.y);
+
+
+
         if (isMoving)
         {
             if (iMTemp != isMoving)
@@ -82,23 +87,26 @@ public class ShipControl : MonoBehaviour
     public float Smt1, Smt2,SmTM1,SmTM2,SmallMeteorSpawnMin, SmallMeteorSpawnMax;
     void MakeMeteor()
     {
-        Smt1 += Time.deltaTime;
-        Smt2 += Time.deltaTime;
-        if (Smt1 >= SmTM1)
-        {
-            GameObject temp = Instantiate(SmallMeteor, Vector3.Lerp(meteorLeftMax.position, meteorRightMax.position, Random.Range(0f, 1f)), Quaternion.identity);
-            SmTM1 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
-            temp.GetComponent<Meteor>().xmin = meteorLeftMax.position.x;
-            temp.GetComponent<Meteor>().xmax = meteorRightMax.position.x;
-        }
-        if (Smt2 >= SmTM2)
-        {
-            GameObject temp = Instantiate(SmallMeteor, Vector3.Lerp(meteorLeftMax.position, meteorRightMax.position, Random.Range(0f, 1f)), Quaternion.identity);
-            SmTM2 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
-            temp.GetComponent<Meteor>().xmin = meteorLeftMax.position.x;
-            temp.GetComponent<Meteor>().xmax = meteorRightMax.position.x;
-        }
+        //Smt1 += Time.deltaTime;
+        //Smt2 += Time.deltaTime;
+        //if (Smt1 >= SmTM1)
+        //{
+        //    GameObject temp = Instantiate(SmallMeteor, Vector3.Lerp(meteorLeftMax.position, meteorRightMax.position, Random.Range(0f, 1f)), Quaternion.identity);
+        //    SmTM1 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
+        //    temp.GetComponent<Meteor>().xmin = meteorLeftMax.position.x;
+        //    temp.GetComponent<Meteor>().xmax = meteorRightMax.position.x;
+        //}
+        //if (Smt2 >= SmTM2)
+        //{
+        //    GameObject temp = Instantiate(SmallMeteor, Vector3.Lerp(meteorLeftMax.position, meteorRightMax.position, Random.Range(0f, 1f)), Quaternion.identity);
+        //    SmTM2 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
+        //    temp.GetComponent<Meteor>().xmin = meteorLeftMax.position.x;
+        //    temp.GetComponent<Meteor>().xmax = meteorRightMax.position.x;
+        //}
     }
+
+ 
+    
     private void FixedUpdate()
     {
         
@@ -129,4 +137,12 @@ public class ShipControl : MonoBehaviour
         
     }
     public float t1, CamSizeSwitchMaxTime,ZoomSp,UnzoomSp;
+
+    private void shipRotation()
+    { 
+    
+    
+    
+    }
+
 }
