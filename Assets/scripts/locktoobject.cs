@@ -15,6 +15,6 @@ public class locktoobject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = target.transform.position + offset;
+        transform.position = target.transform.TransformPoint( offset);
     }
 }
