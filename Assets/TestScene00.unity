@@ -227,7 +227,7 @@ MonoBehaviour:
     type: 3}
   theOtherShip: {fileID: 468877361}
   KnockBack: {x: 0, y: 0, z: 0}
-  knockamount: 2
+  knockamount: 1
   knockmaxtime: 1
   t1: 0
   isShip0: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
     type: 3}
   theOtherShip: {fileID: 199086176}
   KnockBack: {x: 0, y: 0, z: 0}
-  knockamount: 2
+  knockamount: 1
   knockmaxtime: 1
   t1: 0
   isShip0: 1

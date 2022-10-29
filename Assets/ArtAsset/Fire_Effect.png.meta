@@ -45,6 +45,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -268,6 +269,14 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Fire_Effect_2: 1749599942628981194
+      Fire_Effect_1: 3558137710486329874
+      Fire_Effect_4: -1201227006328099144
+      Fire_Effect_6: -5919780030644231721
+      Fire_Effect_5: -3409266528812613100
+      Fire_Effect_0: 140901116535556443
+      Fire_Effect_3: -1589496122482950064
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
