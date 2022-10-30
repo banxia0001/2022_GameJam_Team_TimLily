@@ -22,7 +22,7 @@ public class Collectable : MonoBehaviour
         transform.position = Vector3.Lerp(StartPos, Target.position, t1 / MaxTime);
         if (t1 >= MaxTime)
         {
-            GameObject.FindGameObjectWithTag("GM").GetComponent<ShipControl>().score += scoreamount;
+            GameObject.FindGameObjectWithTag("GM").GetComponent<ShipControl>().ScoreImput(scoreamount);
             Debug.Log("collected");
             Destroy(gameObject);
         }

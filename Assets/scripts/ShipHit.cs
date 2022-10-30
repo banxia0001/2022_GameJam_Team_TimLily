@@ -52,6 +52,7 @@ public class ShipHit : MonoBehaviour
             t1 = 0;
             theOtherShip.CallKnock(transform);
             //Debug.DrawLine(transform.position, transform.position - KnockBack * knockamount, Color.red, 10f);
+            sc.Cam.SetTrigger("T1");
         }
         else
         {

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ShipControl : MonoBehaviour
 {
+    public Animator Cam;
     public GameObject Ship0, Ship1,flame0,flame1,airwalls;
     public Camera cam;
     public Rigidbody2D Rb0, Rb1;
@@ -15,7 +16,7 @@ public class ShipControl : MonoBehaviour
     public GameObject SmallMeteor,Meteor2;
     public Transform meteorLeftMax, meteorRightMax;
     public int score;
-    public TextMeshProUGUI scoredisplay, timerdisplay;
+    public TextMeshProUGUI scoredisplay, score2display,timerdisplay;
     //public float Speed0, Speed1;
     public float HoriTurnMin, HoriTurnMax,maxdistance;
     //public 
@@ -40,8 +41,21 @@ public class ShipControl : MonoBehaviour
     }
 
     // Update is called once per frame
+
+
+    public int scoreCurrentImput;
+    public float scoreTimer;
     void Update()
     {
+
+        scoreTimer += Time.deltaTime;
+        if (scoreTimer > .3f)
+        {
+            score2display.gameObject.SetActive(false);
+            scoreTimer = 0;
+            scoreCurrentImput = 0;
+        }
+
         //Quaternion
         t1 += Time.deltaTime;
         if((LevelMaxTime - t1) <= 0)
@@ -70,14 +84,17 @@ public class ShipControl : MonoBehaviour
         Ship0Pos = new Vector2(Ship0.transform.position.x, Ship0.transform.position.y);
         Ship1Pos = new Vector2(Ship1.transform.position.x, Ship1.transform.position.y);
 
-        if (Ship0MoveVector.y<=0)
-        {
-            Ship0Pos += Vector2.down * altofallsp * Time.deltaTime;
-        }
-        if(Ship1MoveVector.y <= 0)
-        {
-            Ship1Pos += Vector2.down * altofallsp * Time.deltaTime;
-        }
+        //if (Ship0MoveVector.y<=0)
+        //{
+        //    Ship0Pos += 15 * Vector2.down * altofallsp * Time.deltaTime;
+        //}
+        //if (Ship1MoveVector.y <= 0)
+        //{
+        //    Ship1Pos += 15 * Vector2.down * altofallsp * Time.deltaTime;
+        //}
+        Ship0Pos += 15 * Vector2.down * altofallsp * Time.deltaTime;
+        Ship1Pos += 15 * Vector2.down * altofallsp * Time.deltaTime;
+    
 
             //if (isMoving)
             //{
@@ -124,7 +141,23 @@ public class ShipControl : MonoBehaviour
     void setdisplay()
     {
         scoredisplay.text = score.ToString();
-        timerdisplay.text = (LevelMaxTime- t1).ToString("0.00");
+        timerdisplay.text = (LevelMaxTime - t1).ToString("0.00");
+    }
+
+
+    public void ScoreImput(int score)
+    {
+        scoreCurrentImput += score;
+
+        if (score < 0 && scoreCurrentImput > 0) scoreCurrentImput = 0;
+        if (score > 0 && scoreCurrentImput < 0) scoreCurrentImput = 0;
+
+      
+        score2display.gameObject.SetActive(true);
+        scoreTimer = 0;
+        if(score < 0) score2display.text = "<color=#FF0100>" + scoreCurrentImput.ToString() + "</color>";
+        else score2display.text = "<color=#E3FF00>" + "+" + scoreCurrentImput.ToString() + "</color>";
+        score2display.gameObject.GetComponent<Animator>().SetTrigger("T1");
     }
     void camscaler()
     {
