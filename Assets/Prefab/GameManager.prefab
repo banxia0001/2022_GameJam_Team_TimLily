@@ -53,7 +53,7 @@ MonoBehaviour:
   sc: {fileID: 2760693451070678039}
   KnockBack: {x: 0, y: 0, z: 0}
   knockamount: 1
-  knockmaxtime: 1
+  knockmaxtime: 0.8
   t1: 0
   isShip0: 1
   rb: {fileID: 0}
@@ -242,7 +242,7 @@ MonoBehaviour:
   sc: {fileID: 2760693451070678039}
   KnockBack: {x: 0, y: 0, z: 0}
   knockamount: 1
-  knockmaxtime: 1
+  knockmaxtime: 0.8
   t1: 0
   isShip0: 0
   rb: {fileID: 0}
