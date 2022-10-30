@@ -11,11 +11,11 @@ public class _MovingDown : MonoBehaviour
         //Random.Range(-2f,2f);
         this.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
         this.transform.localScale = new Vector3(Random.Range(4.8f, 10.2f), Random.Range(4.8f, 10.2f), Random.Range(4.8f, 7.2f));
-        this.transform.position = new Vector3(transform.position.x, transform.position.y, Random.Range(5f, 30f));
+        this.transform.position = new Vector3(transform.position.x, transform.position.y, Random.Range(-5f, 15f));
     }
     void FixedUpdate()
     {
-        if (this.gameObject.transform.position.y < -50f) Destroy(this.gameObject);
+        if (this.gameObject.transform.position.y < -55f) Destroy(this.gameObject);
 
         transform.position = transform.position + new Vector3(0, -1 * speed * Time.fixedDeltaTime, 0);
 

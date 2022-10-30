@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameStart : MonoBehaviour
 {
     public Animator startPanel;
+    public GameObject light;
     public void LoadGame()
     {
         StartCoroutine(HoldTo_Start());
@@ -13,6 +14,10 @@ public class GameStart : MonoBehaviour
 
     IEnumerator HoldTo_Start()
     {
+       
+        light.SetActive(true);
+        yield return new WaitForSeconds(0.35f);
+
         startPanel.SetTrigger("gameStartPanelOpen");
         yield return new WaitForSeconds(0.2f);
         LoadGame2();

@@ -8,7 +8,8 @@ public class minusscoreobj : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.FindGameObjectWithTag("GM").GetComponent<ShipControl>().score -= minusamount;
+        GameObject.FindGameObjectWithTag("GM").GetComponent<ShipControl>().Cam.SetTrigger("T2");
+        GameObject.FindGameObjectWithTag("GM").GetComponent<ShipControl>().ScoreImput(-minusamount);
     }
 
     // Update is called once per frame
