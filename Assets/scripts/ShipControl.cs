@@ -44,7 +44,10 @@ public class ShipControl : MonoBehaviour
     {
         //Quaternion
         t1 += Time.deltaTime;
+        if((LevelMaxTime - t1) <= 0)
+        {
 
+        }
         MakeMeteor();
         MakeMeteor_BackGround();
         setdisplay();
