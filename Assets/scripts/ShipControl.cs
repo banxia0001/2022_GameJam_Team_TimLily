@@ -53,7 +53,7 @@ public class ShipControl : MonoBehaviour
     IEnumerator HoldTo_End()
     {
         Cam1.SetTrigger("T1");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(10f);
         LoadGame2();
     }
 
@@ -63,7 +63,6 @@ public class ShipControl : MonoBehaviour
     }
     void Update()
     {
-    
         scoreTimer += Time.deltaTime;
         if (scoreTimer > .3f)
         {
@@ -71,11 +70,20 @@ public class ShipControl : MonoBehaviour
             scoreTimer = 0;
             scoreCurrentImput = 0;
         }
+        if (gameEnd)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                LoadGame2();
+            }
+        }
         if (gameEnd) return;
+       
         //Quaternion
         t1 += Time.deltaTime;
         if((LevelMaxTime - t1) <= 0)
         {
+            
             StartCoroutine(HoldTo_End());
             gameEnd = true;
         }
@@ -109,8 +117,8 @@ public class ShipControl : MonoBehaviour
         //{
         //    Ship1Pos += 15 * Vector2.down * altofallsp * Time.deltaTime;
         //}
-        Ship0Pos += 15 * Vector2.down * altofallsp * Time.deltaTime;
-        Ship1Pos += 15 * Vector2.down * altofallsp * Time.deltaTime;
+        Ship0Pos +=   Vector2.down * altofallsp * Time.deltaTime;
+        Ship1Pos +=  Vector2.down * altofallsp * Time.deltaTime;
     
 
             //if (isMoving)

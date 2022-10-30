@@ -72,7 +72,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.38778147
 --- !u!50 &2760693450546248349
 Rigidbody2D:
   serializedVersion: 4
@@ -142,6 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e44d368359b4a84ea8c8ac7f65bd393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cam: {fileID: 0}
+  Cam1: {fileID: 0}
   Ship0: {fileID: 2760693450546248348}
   Ship1: {fileID: 2760693452286849022}
   flame0: {fileID: 3176294369704535714}
@@ -154,28 +156,39 @@ MonoBehaviour:
   Ship1MoveVector: {x: 0, y: 0}
   Ship0Pos: {x: 0, y: 0}
   Ship1Pos: {x: 0, y: 0}
+  LevelMaxTime: 0
   Sp0: 3
   Sp1: 3
   CamOrigin: 5
   CamZoomed: 6.5
   maxtime: 0
+  altofallsp: 0
   haveControl: 0
   isMoving: 0
   iMTemp: 0
   SmallMeteor: {fileID: 3433748706220010545, guid: 69ec654c26ce2bb44b874a688e06260e,
     type: 3}
+  Meteor2: {fileID: 0}
   meteorLeftMax: {fileID: 0}
   meteorRightMax: {fileID: 0}
   score: 0
   scoredisplay: {fileID: 0}
+  score2display: {fileID: 0}
   timerdisplay: {fileID: 0}
   HoriTurnMin: 30
   HoriTurnMax: -30
   maxdistance: 0
+  gameEnd: 0
+  scoreCurrentImput: 0
+  scoreTimer: 0
   Smt1: 0
   Smt2: 0
+  smt3: 0
+  smt4: 0
   SmTM1: 0
   SmTM2: 0
+  smtm3: 0
+  smtm4: 0
   SmallMeteorSpawnMin: 0.3
   SmallMeteorSpawnMax: 1.1
   backMeteors: []
@@ -282,7 +295,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3877815
 --- !u!1001 &1145462288187239616
 PrefabInstance:
   m_ObjectHideFlags: 0
