@@ -79,6 +79,7 @@ public class Meteor : MonoBehaviour
         {
             //GameObject.FindGameObjectWithTag("GM").GetComponent<ShipControl>().Cam.SetTrigger("T2");
             Instantiate(explodeeffect, c.contacts[0].point, Quaternion.identity);
+            Destroy(this.gameObject);
         }
     }
 }
