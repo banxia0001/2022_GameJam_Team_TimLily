@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ShipControl : MonoBehaviour
 {
-    public Animator Cam;
+    public Animator Cam,Cam1;
     public GameObject Ship0, Ship1,flame0,flame1,airwalls;
     public Camera cam;
     public Rigidbody2D Rb0, Rb1;
@@ -19,10 +20,13 @@ public class ShipControl : MonoBehaviour
     public TextMeshProUGUI scoredisplay, score2display,timerdisplay;
     //public float Speed0, Speed1;
     public float HoriTurnMin, HoriTurnMax,maxdistance;
+
+    public bool gameEnd = false;
     //public 
     // Start is called before the first frame update
     void Start()
     {
+        gameEnd = false;
         SmTM1 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
         SmTM2 = Random.Range(SmallMeteorSpawnMin, SmallMeteorSpawnMax);
 
@@ -45,9 +49,21 @@ public class ShipControl : MonoBehaviour
 
     public int scoreCurrentImput;
     public float scoreTimer;
+
+    IEnumerator HoldTo_End()
+    {
+        Cam1.SetTrigger("T1");
+        yield return new WaitForSeconds(3f);
+        LoadGame2();
+    }
+
+    void LoadGame2()
+    {
+        SceneManager.LoadScene(0);
+    }
     void Update()
     {
-
+    
         scoreTimer += Time.deltaTime;
         if (scoreTimer > .3f)
         {
@@ -55,12 +71,13 @@ public class ShipControl : MonoBehaviour
             scoreTimer = 0;
             scoreCurrentImput = 0;
         }
-
+        if (gameEnd) return;
         //Quaternion
         t1 += Time.deltaTime;
         if((LevelMaxTime - t1) <= 0)
         {
-
+            StartCoroutine(HoldTo_End());
+            gameEnd = true;
         }
         MakeMeteor();
         MakeMeteor_BackGround();
@@ -140,6 +157,7 @@ public class ShipControl : MonoBehaviour
     }
     void setdisplay()
     {
+        if (gameEnd) return;
         scoredisplay.text = score.ToString();
         timerdisplay.text = (LevelMaxTime - t1).ToString("0.00");
     }
@@ -148,7 +166,7 @@ public class ShipControl : MonoBehaviour
     public void ScoreImput(int score)
     {
         scoreCurrentImput += score;
-
+        this.score += score;
         if (score < 0 && scoreCurrentImput > 0) scoreCurrentImput = 0;
         if (score > 0 && scoreCurrentImput < 0) scoreCurrentImput = 0;
 
@@ -248,7 +266,7 @@ public class ShipControl : MonoBehaviour
     public float t2, t3, ship0recorded, ship1recorded;
     private void FixedUpdate()
     {
-
+        if (gameEnd) return;
         if (Ship0MoveVector != Vector2.zero)
         {
             Rb0.MovePosition(Ship0Pos + Ship0MoveVector * Time.deltaTime * Sp0);
