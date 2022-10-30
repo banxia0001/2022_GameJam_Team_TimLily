@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/StartMenu.unity
+    guid: c54b7d0a9418ff2428fb9c62e3ec231c
+  - enabled: 1
+    path: Assets/levelprefabeditor.unity
+    guid: 94ff425c2383ff04fa985cf4e437b521
   m_configObjects: {}
