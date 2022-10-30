@@ -9,10 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6905228767936491658}
+  - component: {fileID: 9121759475188810105}
   - component: {fileID: 6905228767936491659}
   - component: {fileID: 6905228767936491668}
+  - component: {fileID: 2568963025322007917}
   m_Layer: 0
-  m_Name: Explore_2
+  m_Name: Explode_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +35,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+--- !u!114 &9121759475188810105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6905228767936491669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e917bdfc77f467f49b32a0bf62e25b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DTime: 2.2
+  t1: 0
 --- !u!198 &6905228767936491659
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4879,3 +4895,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &2568963025322007917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6905228767936491669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3088b1c980733b489d822dec7482d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minusamount: 40

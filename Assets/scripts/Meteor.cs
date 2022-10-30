@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
-    public GameObject CollectableRocks;
+    public GameObject CollectableRocks,explodeeffect;
     public Vector3 MoveVector;
     public float Sp,xmin,xmax,turnmin,turnmax;
     public bool isType2;
@@ -72,5 +72,13 @@ public class Meteor : MonoBehaviour
 
         Debug.Log("Meteor Destroyed");
         Destroy(gameObject);
+    }
+    private void OnCollisionEnter2D(Collision2D c)
+    {
+        if (c.gameObject.tag == "Player")
+        {
+            Instantiate(explodeeffect, c.contacts[0].point, Quaternion.identity);
+
+        }
     }
 }

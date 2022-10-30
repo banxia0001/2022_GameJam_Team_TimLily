@@ -10,7 +10,7 @@ public class ShipControl : MonoBehaviour
     public Camera cam;
     public Rigidbody2D Rb0, Rb1;
     public Vector2 Ship0MoveVector, Ship1MoveVector,Ship0Pos,Ship1Pos;
-    public float Sp0, Sp1,CamOrigin,CamZoomed, maxtime,altofallsp;
+    public float LevelMaxTime, Sp0, Sp1,CamOrigin,CamZoomed, maxtime,altofallsp;
     public bool haveControl,isMoving,iMTemp;
     public GameObject SmallMeteor,Meteor2;
     public Transform meteorLeftMax, meteorRightMax;
@@ -47,7 +47,7 @@ public class ShipControl : MonoBehaviour
 
         MakeMeteor();
         MakeMeteor_BackGround();
-
+        setdisplay();
         camscaler();
         isMoving = false;
         Ship0MoveVector = Vector2.zero;
@@ -120,8 +120,8 @@ public class ShipControl : MonoBehaviour
     }
     void setdisplay()
     {
-        //scoredisplay.text = score.ToString();
-        //timerdisplay.text = t1.ToString("0.00");
+        scoredisplay.text = score.ToString();
+        timerdisplay.text = (LevelMaxTime- t1).ToString("0.00");
     }
     void camscaler()
     {

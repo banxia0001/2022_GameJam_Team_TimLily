@@ -124,12 +124,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectableRocks: {fileID: 1146844601751803880, guid: 61d3a7a8f6444c2488d1c57e5ca3216c,
     type: 3}
+  explodeeffect: {fileID: 6905228767936491669, guid: ba63ce0f266c70747aaabafaf2c33a8d,
+    type: 3}
   MoveVector: {x: 0, y: 0, z: 0}
   Sp: 3
   xmin: 0
   xmax: 0
   turnmin: -35
   turnmax: 35
+  isType2: 0
+  lootamount: 0
 --- !u!58 &4515177011995359342
 CircleCollider2D:
   m_ObjectHideFlags: 0

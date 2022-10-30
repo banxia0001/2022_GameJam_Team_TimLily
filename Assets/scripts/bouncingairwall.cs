@@ -6,6 +6,7 @@ public class bouncingairwall : MonoBehaviour
 {
     public Vector3 knockdir;
     public float knocksp;
+    public GameObject explodeeffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class bouncingairwall : MonoBehaviour
         if (c.gameObject.tag == "Player")
         {
             Debug.Log("air wall knocked player");
+            Instantiate( explodeeffect,c.contacts[0].point,Quaternion.identity);
             c.gameObject.GetComponent<ShipHit>().airwallknock(knockdir, knocksp);
         }
     }
